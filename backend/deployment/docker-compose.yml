@@ -1,0 +1,65 @@
+
+version: '3.8'
+
+services:
+  job-app-bot:
+    build: .
+    container_name: job-application-bot
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+      - ./config:/app/config
+    environment:
+      - PYTHONPATH=/app/src
+      - DISPLAY=:99
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    networks:
+      - job-app-network
+
+  # Optional: Add a database service
+  postgres:
+    image: postgres:13
+    container_name: job-app-postgres
+    environment:
+      POSTGRES_DB: job_applications
+      POSTGRES_USER: jobbot
+      POSTGRES_PASSWORD: secure_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    networks:
+      - job-app-network
+
+  # Optional: Add Redis for job queuing
+  redis:
+    image: redis:6-alpine
+    container_name: job-app-redis
+    ports:
+      - "6379:6379"
+    networks:
+      - job-app-network
+
+  # Optional: Add a web dashboard
+  dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile.dashboard
+    container_name: job-app-dashboard
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - job-app-network
+
+volumes:
+  postgres_data:
+
+networks:
+  job-app-network:
+    driver: bridge

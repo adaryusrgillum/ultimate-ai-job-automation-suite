@@ -1,0 +1,70 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: job-application-bot
+  labels:
+    app: job-application-bot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: job-application-bot
+  template:
+    metadata:
+      labels:
+        app: job-application-bot
+    spec:
+      containers:
+      - name: job-app-bot
+        image: job-application-bot:latest
+        ports:
+        - containerPort: 8000
+        env:
+        - name: PYTHONPATH
+          value: "/app/src"
+        - name: DISPLAY
+          value: ":99"
+        volumeMounts:
+        - name: data-volume
+          mountPath: /app/data
+        - name: config-volume
+          mountPath: /app/config
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "1Gi"
+            cpu: "500m"
+      volumes:
+      - name: data-volume
+        persistentVolumeClaim:
+          claimName: job-app-data-pvc
+      - name: config-volume
+        configMap:
+          name: job-app-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: job-application-bot-service
+spec:
+  selector:
+    app: job-application-bot
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8000
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: job-app-data-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi

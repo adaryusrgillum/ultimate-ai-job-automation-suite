@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "Job Application Autofiller",
+  "version": "2.0",
+  "description": "AI-powered universal job application autofiller. Supports Greenhouse, Lever, Workday, iCIMS, and 15+ ATS platforms.",
+  "permissions": [
+    "storage",
+    "activeTab",
+    "scripting",
+    "downloads"
+  ],
+  "host_permissions": [
+    "http://localhost:*/*",
+    "http://127.0.0.1:*/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["platforms.js", "content.js"],
+      "css": ["content-inject.css"],
+      "all_frames": true,
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {}
+}

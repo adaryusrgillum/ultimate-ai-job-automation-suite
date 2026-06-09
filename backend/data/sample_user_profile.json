@@ -1,0 +1,68 @@
+{
+  "user_id": "user_001",
+  "personal_info": {
+    "full_name": "John Doe",
+    "email": "john.doe@email.com",
+    "phone": "+1-555-0123",
+    "location": "San Francisco, CA",
+    "linkedin_url": "https://linkedin.com/in/johndoe",
+    "github_url": "https://github.com/johndoe",
+    "portfolio_url": "https://johndoe.dev"
+  },
+  "skills": [
+    {
+      "skill_name": "Python",
+      "proficiency_level": 5,
+      "years_experience": 5.0
+    },
+    {
+      "skill_name": "Machine Learning",
+      "proficiency_level": 4,
+      "years_experience": 3.0
+    },
+    {
+      "skill_name": "React",
+      "proficiency_level": 4,
+      "years_experience": 3.5
+    },
+    {
+      "skill_name": "SQL",
+      "proficiency_level": 4,
+      "years_experience": 4.0
+    }
+  ],
+  "work_experience": [
+    {
+      "company_name": "Tech Corp",
+      "position": "Senior Software Engineer",
+      "start_date": "2021-01-01",
+      "end_date": null,
+      "description": "Lead development of ML-powered applications",
+      "achievements": "Increased system performance by 40%"
+    }
+  ],
+  "job_preferences": {
+    "preferred_roles": [
+      "Software Engineer",
+      "ML Engineer",
+      "Data Scientist"
+    ],
+    "preferred_locations": [
+      "San Francisco",
+      "Remote",
+      "New York"
+    ],
+    "salary_min": 120000,
+    "salary_max": 180000,
+    "remote_preference": "hybrid",
+    "company_size_preference": [
+      "startup",
+      "mid-size"
+    ],
+    "industry_preferences": [
+      "tech",
+      "fintech",
+      "healthcare"
+    ]
+  }
+}

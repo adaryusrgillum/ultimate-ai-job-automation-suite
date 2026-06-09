@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Job Autofiller</title>
+  <link rel="stylesheet" href="popup.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="popup-container">
+    <div class="header">
+      <div class="logo">🚀</div>
+      <div>
+        <h2>Job Autofiller</h2>
+        <span class="version">v2.0 · AI Copilot</span>
+      </div>
+    </div>
+    
+    <div class="main-content">
+      <button id="autofillBtn" class="btn-primary">
+        <span class="btn-icon">⚡</span>
+        <span class="btn-text">Autofill Page</span>
+        <span class="loader" id="autofillLoader"></span>
+      </button>
+
+      <button id="coverLetterBtn" class="btn-secondary">
+        <span class="btn-icon">📝</span>
+        <span class="btn-text">Generate Cover Letter</span>
+      </button>
+
+      <div id="statusMessage" class="status-message hidden"></div>
+      <div id="fieldCount" class="field-count hidden"></div>
+    </div>
+    
+    <div class="footer">
+      <a href="#" id="optionsLink">⚙️ Edit Profile</a>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

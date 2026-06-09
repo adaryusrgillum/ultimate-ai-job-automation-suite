@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Application Profile & Control Panel</title>
+  <link rel="stylesheet" href="options.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="background-elements">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+  </div>
+
+  <div class="container">
+    <header>
+      <h1>AI Job Copilot Dashboard</h1>
+      <p>Configure your profile, API connections, and launch Easy Apply Automation Bots.</p>
+    </header>
+
+    <div class="glass-card">
+      
+      <!-- 🤖 AUTOMATION BOT PANEL -->
+      <div class="form-section" style="background: rgba(99, 102, 241, 0.05); border: 1px dashed rgba(99, 102, 241, 0.3); padding: 25px; border-radius: 16px; margin-bottom: 35px;">
+        <h2 style="color: #a5b4fc; border-bottom: none; margin-bottom: 15px; display:flex; align-items:center; gap:8px;">
+          <span>🤖</span> LinkedIn & Indeed Auto-Apply Bot
+        </h2>
+        <div class="input-row">
+          <div class="input-group">
+            <label for="botKeywords">Job Title Keywords</label>
+            <input type="text" id="botKeywords" placeholder="e.g. AI Engineer, Data Analyst" />
+          </div>
+          <div class="input-group">
+            <label for="botLocation">Job Location</label>
+            <input type="text" id="botLocation" placeholder="e.g. Remote, San Francisco" />
+          </div>
+        </div>
+        <div class="input-row" style="align-items: center; margin-bottom: 0;">
+          <div class="input-group">
+            <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
+              <input type="checkbox" id="botAutoSubmit" style="width:18px; height:18px; accent-color:#6366f1;" checked />
+              <span style="font-size: 0.9rem; color: #a78bfa;">Auto-Submit applications (if unchecked, pauses on review screen for safety)</span>
+            </label>
+          </div>
+          <div class="actions" style="margin-top:0; justify-content: flex-end;">
+            <button type="button" class="btn-primary" id="startBotBtn" style="background: linear-gradient(135deg, #6366f1, #a855f7); border: none; padding: 12px 24px;">
+              Launch Auto-Apply Bot
+            </button>
+          </div>
+        </div>
+        <div id="botStatusMessage" style="font-size:0.9rem; color:#a5b4fc; margin-top:12px; display:none; font-weight: 500;"></div>
+      </div>
+
+      <form id="profileForm">
+        
+        <!-- AI COPILOT SETTINGS -->
+        <div class="form-section">
+          <h2>AI Copilot Engine Settings</h2>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="cloudProvider">AI Provider Engine</label>
+              <select id="cloudProvider" name="cloudProvider" class="custom-select">
+                <option value="local">Local Ollama / LM Studio (Standard)</option>
+                <option value="openai">OpenAI Cloud (GPT-4o-mini)</option>
+                <option value="gemini">Google Gemini (Gemini 1.5 Flash)</option>
+                <option value="anthropic">Anthropic Claude (Claude 3.5 Sonnet)</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label for="localLlmModel">Model Name (e.g. gemma4:latest or gpt-4o-mini)</label>
+              <input type="text" id="localLlmModel" name="localLlmModel" placeholder="gemma4:latest" />
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="localLlmUrl">Local Endpoint URL (Ollama default: 11434)</label>
+              <input type="text" id="localLlmUrl" name="localLlmUrl" placeholder="http://127.0.0.1:11434/v1/chat/completions" />
+            </div>
+            <div class="input-group">
+              <label for="openaiApiKey">OpenAI API Key</label>
+              <input type="password" id="openaiApiKey" name="openaiApiKey" placeholder="sk-proj-..." />
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="geminiApiKey">Gemini API Key</label>
+              <input type="password" id="geminiApiKey" name="geminiApiKey" placeholder="AIzaSy..." />
+            </div>
+            <div class="input-group">
+              <label for="anthropicApiKey">Anthropic API Key</label>
+              <input type="password" id="anthropicApiKey" name="anthropicApiKey" placeholder="sk-ant-..." />
+            </div>
+          </div>
+        </div>
+
+        <!-- PERSONAL INFO -->
+        <div class="form-section">
+          <h2>Personal Information</h2>
+          <div class="input-row">
+            <div class="input-group" style="flex: 0.3;">
+              <label for="prefix">Prefix</label>
+              <input type="text" id="prefix" name="prefix" placeholder="e.g. Mr., Ms., Dr." />
+            </div>
+            <div class="input-group">
+              <label for="firstName">First Name</label>
+              <input type="text" id="firstName" name="firstName" />
+            </div>
+            <div class="input-group">
+              <label for="middleName">Middle Name</label>
+              <input type="text" id="middleName" name="middleName" />
+            </div>
+            <div class="input-group">
+              <label for="lastName">Last Name</label>
+              <input type="text" id="lastName" name="lastName" />
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" />
+            </div>
+            <div class="input-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" />
+            </div>
+            <div class="input-group">
+              <label for="pronouns">Preferred Pronouns</label>
+              <input type="text" id="pronouns" name="pronouns" placeholder="e.g. He/Him, She/Her" />
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="dob">Date of Birth (MM/DD/YYYY)</label>
+              <input type="text" id="dob" name="dob" />
+            </div>
+            <div class="input-group">
+              <label for="birthplace">Place of Birth</label>
+              <input type="text" id="birthplace" name="birthplace" />
+            </div>
+          </div>
+        </div>
+
+        <!-- ADDRESSES -->
+        <div class="form-section">
+          <h2>Addresses & Location</h2>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="physicalAddress">Street Address Line 1</label>
+              <input type="text" id="physicalAddress" name="physicalAddress" />
+            </div>
+            <div class="input-group">
+              <label for="addressLine2">Street Address Line 2</label>
+              <input type="text" id="addressLine2" name="addressLine2" placeholder="Apt, Suite, Unit" />
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="city">City</label>
+              <input type="text" id="city" name="city" />
+            </div>
+            <div class="input-group">
+              <label for="state">State / Province</label>
+              <input type="text" id="state" name="state" />
+            </div>
+            <div class="input-group" style="flex: 0.5;">
+              <label for="zip">Zip / Postal Code</label>
+              <input type="text" id="zip" name="zip" />
+            </div>
+            <div class="input-group">
+              <label for="country">Country</label>
+              <input type="text" id="country" name="country" />
+            </div>
+          </div>
+          <div class="input-group full-width">
+            <label for="mailingAddress">Mailing Address (if different)</label>
+            <input type="text" id="mailingAddress" name="mailingAddress" />
+          </div>
+        </div>
+
+        <!-- ACADEMICS -->
+        <div class="form-section">
+          <h2>Education History</h2>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="university">University / School Name</label>
+              <input type="text" id="university" name="university" />
+            </div>
+            <div class="input-group">
+              <label for="major">Field of Study / Major</label>
+              <input type="text" id="major" name="major" />
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="gpa">GPA</label>
+              <input type="text" id="gpa" name="gpa" placeholder="e.g. 3.80" />
+            </div>
+            <div class="input-group">
+              <label for="gradYear">Graduation Year</label>
+              <input type="text" id="gradYear" name="gradYear" placeholder="e.g. 2022" />
+            </div>
+          </div>
+        </div>
+
+        <!-- LOGISTICS & DEMOGRAPHICS -->
+        <div class="form-section">
+          <h2>Demographics (EEOC) & Career Logistics</h2>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="gender">Gender</label>
+              <select id="gender" name="gender" class="custom-select">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Non-binary">Non-binary</option>
+                <option value="Decline">Decline to self-identify</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label for="race">Race / Ethnicity</label>
+              <select id="race" name="race" class="custom-select">
+                <option value="White">White</option>
+                <option value="Hispanic or Latino">Hispanic or Latino</option>
+                <option value="Black or African American">Black or African American</option>
+                <option value="Asian">Asian</option>
+                <option value="Two or More Races">Two or More Races</option>
+                <option value="Decline">Decline to self-identify</option>
+              </select>
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="veteran">Veteran Status</label>
+              <select id="veteran" name="veteran" class="custom-select">
+                <option value="Not a veteran">Not a veteran</option>
+                <option value="Veteran">Veteran</option>
+                <option value="Decline">Decline to self-identify</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label for="disability">Disability Status</label>
+              <select id="disability" name="disability" class="custom-select">
+                <option value="No">No, I don't have a disability</option>
+                <option value="Yes">Yes, I have a disability</option>
+                <option value="Decline">Decline to self-identify</option>
+              </select>
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="salary">Desired Annual Salary ($)</label>
+              <input type="text" id="salary" name="salary" placeholder="e.g. 150,000" />
+            </div>
+            <div class="input-group">
+              <label for="noticePeriod">Notice Period / Start Date</label>
+              <input type="text" id="noticePeriod" name="noticePeriod" placeholder="e.g. 2 weeks, Immediate" />
+            </div>
+            <div class="input-group">
+              <label for="referralSource">How did you hear about us?</label>
+              <input type="text" id="referralSource" name="referralSource" placeholder="e.g. LinkedIn, Job Board" />
+            </div>
+          </div>
+        </div>
+
+        <!-- SOCIAL LINKS -->
+        <div class="form-section">
+          <h2>Social Profiles & Links</h2>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="linkedin">LinkedIn URL</label>
+              <input type="url" id="linkedin" name="linkedin" />
+            </div>
+            <div class="input-group">
+              <label for="github">GitHub URL</label>
+              <input type="url" id="github" name="github" />
+            </div>
+          </div>
+          <div class="input-row">
+            <div class="input-group">
+              <label for="twitter">Twitter / X URL</label>
+              <input type="url" id="twitter" name="twitter" />
+            </div>
+            <div class="input-group">
+              <label for="portfolio">Portfolio / Personal Website</label>
+              <input type="url" id="portfolio" name="portfolio" />
+            </div>
+          </div>
+        </div>
+
+        <!-- RESUME SUMMARY & EXPERIENCE -->
+        <div class="form-section">
+          <h2>Resume Summaries & Cover Letter Context</h2>
+          <div class="input-group full-width" style="margin-bottom: 20px;">
+            <label for="skills">Skills (comma separated)</label>
+            <textarea id="skills" name="skills" rows="3"></textarea>
+          </div>
+          <div class="input-group full-width" style="margin-bottom: 20px;">
+            <label for="experience">Work Experience Summary</label>
+            <textarea id="experience" name="experience" rows="6"></textarea>
+          </div>
+          <div class="input-group full-width">
+            <label for="coverLetter">Cover Letter Prompt / Base Summary</label>
+            <textarea id="coverLetter" name="coverLetter" rows="4"></textarea>
+          </div>
+        </div>
+
+        <!-- FORM SAVE -->
+        <div class="actions">
+          <button type="submit" class="btn-primary" id="saveBtn">
+            <span class="btn-text">Save Profile</span>
+            <span class="loader" id="saveLoader"></span>
+          </button>
+          <div id="statusMessage" class="status-message hidden">Profile & settings saved. AI cache invalidated!</div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

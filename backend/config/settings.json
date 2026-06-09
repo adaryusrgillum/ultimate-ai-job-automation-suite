@@ -1,0 +1,28 @@
+
+{
+    "database_path": "data/job_app_system.db",
+    "headless_browser": false,
+    "browser_profile_path": "config/browser_profiles/default",
+    "resume_path": "data/resume.pdf",
+    "max_applications_per_day": 10,
+    "delay_between_applications": 60,
+    "job_sources": {
+        "indeed": {
+            "enabled": true,
+            "max_pages": 5
+        },
+        "linkedin": {
+            "enabled": false,
+            "requires_login": true
+        }
+    },
+    "ai_settings": {
+        "similarity_threshold": 0.3,
+        "max_job_matches": 20
+    },
+    "safety_settings": {
+        "require_manual_review": true,
+        "auto_submit": false,
+        "max_daily_applications": 10
+    }
+}

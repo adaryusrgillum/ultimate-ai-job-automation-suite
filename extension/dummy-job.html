@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acme Corp - AI Engineer Application</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f3f4f6; color: #1f2937; padding: 40px; display: flex; justify-content: center; }
+    .container { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); width: 100%; max-width: 650px; }
+    h1 { margin-top: 0; font-size: 24px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; }
+    h3 { color: #374151; margin-top: 30px; border-bottom: 1px solid #e5e7eb; padding-bottom: 6px; }
+    .form-group { margin-bottom: 20px; }
+    label { display: block; font-weight: 500; margin-bottom: 6px; }
+    input[type="text"], input[type="email"], input[type="tel"], select, textarea { width: 100%; padding: 10px; border: 1px solid #d1d5db; border-radius: 6px; box-sizing: border-box; font-size: 14px; }
+    input[type="file"] { margin-top: 4px; }
+    .radio-group { display: flex; gap: 15px; margin-top: 5px; }
+    .radio-group label { display: inline-flex; align-items: center; font-weight: normal; margin-bottom: 0; cursor: pointer; }
+    .radio-group input { margin-right: 8px; }
+    .row { display: flex; gap: 16px; }
+    .row .form-group { flex: 1; }
+    button[type="submit"] { background: #2563eb; color: white; border: none; padding: 14px 24px; border-radius: 8px; font-weight: bold; cursor: pointer; width: 100%; font-size: 16px; margin-top: 10px; }
+    button[type="submit"]:hover { background: #1d4ed8; }
+    .section { margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Apply for AI Engineer at Acme Corp</h1>
+    <p style="color: #6b7280; margin-bottom: 30px;">San Francisco, CA · Full-time · $150k-$200k · Machine Learning, NLP, Computer Vision</p>
+
+    <form id="applicationForm">
+      
+      <h3>Personal Information</h3>
+      <div class="row">
+        <div class="form-group">
+          <label for="fname">First Name *</label>
+          <input type="text" id="fname" name="fname" autocomplete="given-name" required>
+        </div>
+        <div class="form-group">
+          <label for="lname">Last Name *</label>
+          <input type="text" id="lname" name="lname" autocomplete="family-name" required>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group">
+          <label for="email_address">Email Address *</label>
+          <input type="email" id="email_address" name="email_address" autocomplete="email" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" autocomplete="tel">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group">
+          <label for="city">City</label>
+          <input type="text" id="city" name="city">
+        </div>
+        <div class="form-group">
+          <label for="state">State</label>
+          <input type="text" id="state" name="state">
+        </div>
+        <div class="form-group">
+          <label for="zip">Zip Code</label>
+          <input type="text" id="zip" name="zip">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="linkedin">LinkedIn Profile</label>
+        <input type="text" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/...">
+      </div>
+
+      <div class="form-group">
+        <label for="portfolio_url">Personal Website / Portfolio</label>
+        <input type="text" id="portfolio_url" name="portfolio_url" placeholder="https://...">
+      </div>
+
+      <h3>Documents</h3>
+      <div class="form-group">
+        <label for="resume_upload">Resume / CV *</label>
+        <input type="file" id="resume_upload" name="resume_upload" accept=".pdf,.doc,.docx">
+      </div>
+
+      <div class="form-group">
+        <label for="cover_letter_upload">Cover Letter</label>
+        <input type="file" id="cover_letter_upload" name="cover_letter_upload" accept=".pdf,.doc,.docx">
+      </div>
+
+      <h3>Work Authorization</h3>
+      <div class="form-group">
+        <label>Are you legally authorized to work in the United States? *</label>
+        <div class="radio-group">
+          <label><input type="radio" name="auth_work" value="yes"> Yes</label>
+          <label><input type="radio" name="auth_work" value="no"> No</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Will you now or in the future require sponsorship for an employment visa? *</label>
+        <div class="radio-group">
+          <label><input type="radio" name="require_sponsorship" value="yes"> Yes</label>
+          <label><input type="radio" name="require_sponsorship" value="no"> No</label>
+        </div>
+      </div>
+
+      <h3>Voluntary Self-Identification</h3>
+      <div class="row">
+        <div class="form-group">
+          <label for="gender_select">Gender</label>
+          <select id="gender_select" name="gender_select">
+            <option value="">Please Select</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Non-binary">Non-binary</option>
+            <option value="Decline">Decline to self-identify</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="race_ethnicity">Race / Ethnicity</label>
+          <select id="race_ethnicity" name="race_ethnicity">
+            <option value="">Please Select</option>
+            <option value="White">White (Not Hispanic or Latino)</option>
+            <option value="Black">Black or African American</option>
+            <option value="Asian">Asian</option>
+            <option value="Hispanic">Hispanic or Latino</option>
+            <option value="Decline">Decline to Self Identify</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group">
+          <label for="veteran_status">Veteran Status</label>
+          <select id="veteran_status" name="veteran_status">
+            <option value="">Please Select</option>
+            <option value="Not a veteran">I am not a protected veteran</option>
+            <option value="Veteran">I identify as a protected veteran</option>
+            <option value="Decline">Decline to self-identify</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="disability_status">Disability Status</label>
+          <select id="disability_status" name="disability_status">
+            <option value="">Please Select</option>
+            <option value="No">No, I don't have a disability</option>
+            <option value="Yes">Yes, I have a disability</option>
+            <option value="Decline">Decline to self-identify</option>
+          </select>
+        </div>
+      </div>
+
+      <h3>Additional Questions</h3>
+      <div class="form-group">
+        <label for="custom_question">Why do you want to work at Acme Corp as an AI Engineer?</label>
+        <textarea id="custom_question" name="custom_question" rows="5" placeholder="Share your motivation..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="salary_expectations">Desired Salary</label>
+        <input type="text" id="salary_expectations" name="salary_expectations" placeholder="e.g. $150,000">
+      </div>
+
+      <button type="submit">Submit Application</button>
+    </form>
+  </div>
+</body>
+</html>

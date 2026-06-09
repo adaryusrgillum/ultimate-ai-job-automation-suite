@@ -1,4 +1,4 @@
-name: 🧪 Simple Test Workflow
+name: ✅ Basic Working Test
 
 on:
   workflow_dispatch:
@@ -9,10 +9,25 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - name: Simple Test
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Simple test
       run: |
         echo "🎉 GitHub Actions is working!"
         echo "Repository: ${{ github.repository }}"
         echo "Workflow: ${{ github.workflow }}"
+        echo "Event: ${{ github.event_name }}"
         echo "✅ Test completed successfully!"
+
+    - name: Environment info
+      run: |
+        echo "Runner OS: ${{ runner.os }}"
+        echo "Runner arch: ${{ runner.arch }}"
+        echo "Working directory: $(pwd)"
+        ls -la
+
+    - name: Success confirmation
+      run: |
+        echo "🚀 All tests passed!"
+        echo "Workflow is functioning correctly!"
